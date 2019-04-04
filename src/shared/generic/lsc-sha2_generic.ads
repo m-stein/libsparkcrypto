@@ -36,6 +36,7 @@
 
 package LSC.SHA2_Generic
 is
+   pragma Pure;
    generic
       type Message_Index_Type is (<>);
       type Message_Elem_Type is (<>);

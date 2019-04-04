@@ -33,11 +33,18 @@
 -------------------------------------------------------------------------------
 
 with Interfaces;
+<<<<<<< HEAD:src/shared/generic/lsc-internal-sha256.adb
 with LSC.Internal.Byteorder32;
 with LSC.Internal.SHA256.Tables;
 with LSC.Internal.Pad32;
---with LSC.Internal.Debug;
---pragma Unreferenced (LSC.Internal.Debug);
+with LSC.Internal.Debug;
+pragma Unreferenced (LSC.Internal.Debug);
+=======
+--with LSC.Debug;
+with LSC.Byteorder32;
+with LSC.SHA256.Tables;
+with LSC.Pad32;
+>>>>>>> e07c77d... AES, SHA256: add pragma pure:src/shared/generic/lsc-sha256.adb
 
 package body LSC.Internal.SHA256 is
 

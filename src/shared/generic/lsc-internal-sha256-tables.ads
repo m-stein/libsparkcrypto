@@ -41,6 +41,8 @@ private package LSC.Internal.SHA256.Tables is
 
    pragma Pure;
 
+   pragma Pure;
+
    K : constant SHA256.Schedule_Type := SHA256.Schedule_Type'
      (16#428a2f98#, 16#71374491#, 16#b5c0fbcf#, 16#e9b5dba5#, 16#3956c25b#, 16#59f111f1#, 16#923f82a4#, 16#ab1c5ed5#,
       16#d807aa98#, 16#12835b01#, 16#243185be#, 16#550c7dc3#, 16#72be5d74#, 16#80deb1fe#, 16#9bdc06a7#, 16#c19bf174#,

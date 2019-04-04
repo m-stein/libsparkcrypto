@@ -43,6 +43,8 @@ with
 is
    pragma Pure;
 
+   pragma Pure;
+
    -- Byte-swap @Value@
    function Swap (Value : Types.Word32) return Types.Word32;
    pragma Inline (Swap);

@@ -43,6 +43,8 @@ package LSC.Internal.Ops32 is
 
    pragma Pure;
 
+   pragma Pure;
+
    -- Convert the four byte values @Byte0@, @Byte1@, @Byte2@ and @Byte3@ to a
    -- 32-bit word
    function Bytes_To_Word

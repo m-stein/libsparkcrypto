@@ -2,7 +2,7 @@
 -- This file is part of libsparkcrypto.
 --
 -- @author Alexander Senier
--- @date   2019-01-16
+-- @date   2019-01-22
 --
 -- Copyright (C) 2018 Componolit GmbH
 -- All rights reserved.
@@ -34,34 +34,42 @@
 -- POSSIBILITY OF SUCH DAMAGE.
 -------------------------------------------------------------------------------
 
-with LSC.AES_Generic;
 with LSC.Types;
+with LSC.AES_Generic.CBC;
 
-pragma Elaborate_All (LSC.AES_Generic);
+pragma Elaborate_All (LSC.AES_Generic.CBC);
 
-package LSC.AES
+<<<<<<< HEAD
+package LSC.AES.CBC
 is
-
+   procedure Decrypt is new
+      AES_Generic.CBC.Decrypt (Types.Natural_Index, Types.Byte, Types.Bytes,
+                               Types.Natural_Index, Types.Byte, Types.Bytes);
+=======
    pragma Pure;
-   subtype Dec_Key_Type is LSC.AES_Generic.Dec_Key_Type;
-   subtype Enc_Key_Type is LSC.AES_Generic.Enc_Key_Type;
 
-   L128 : constant LSC.AES_Generic.Keylen_Type := LSC.AES_Generic.L128;
-   L192 : constant LSC.AES_Generic.Keylen_Type := LSC.AES_Generic.L192;
-   L256 : constant LSC.AES_Generic.Keylen_Type := LSC.AES_Generic.L256;
+   -- Encrypt @Length@ elements of the @Plaintext@ array using the AES context
+   -- @Context@ and the initialization vector @IV@. The result is placed into
+   -- @Ciphertext@.
+   procedure Encrypt (Context    : in     AES.AES_Enc_Context;
+                      IV         : in     AES.Block_Type;
+                      Plaintext  : in     AES.Message_Type;
+                      Length     : in     AES.Message_Index;
+                      Ciphertext :    out AES.Message_Type)
+     with
+       Depends =>
+         (Ciphertext =>+ (Context, IV, Plaintext, Length)),
+       Pre =>
+         Plaintext'First = Ciphertext'First and
+         Plaintext'Last  = Ciphertext'Last and
+         Plaintext'First + Length - 1 in Plaintext'Range and
+         Plaintext'First + Length - 1 in AES.Message_Index and
+         Ciphertext'First + Length - 1 in Ciphertext'Range and
+         Ciphertext'First + Length - 1 in AES.Message_Index;
+>>>>>>> e07c77d... AES, SHA256: add pragma pure
 
-   function Dec_Key is
-      new AES_Generic.Dec_Key (Types.Natural_Index, Types.Byte, Types.Bytes);
-
-   function Enc_Key is
-      new AES_Generic.Enc_Key (Types.Natural_Index, Types.Byte, Types.Bytes);
-
-   function Encrypt is
-      new AES_Generic.Encrypt (Types.Natural_Index, Types.Byte, Types.Bytes,
+   procedure Encrypt is new
+      AES_Generic.CBC.Encrypt (Types.Natural_Index, Types.Byte, Types.Bytes,
                                Types.Natural_Index, Types.Byte, Types.Bytes);
 
-   function Decrypt is
-      new AES_Generic.Decrypt (Types.Natural_Index, Types.Byte, Types.Bytes,
-                               Types.Natural_Index, Types.Byte, Types.Bytes);
-
-end LSC.AES;
+end LSC.AES.CBC;

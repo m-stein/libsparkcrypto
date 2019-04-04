@@ -44,6 +44,8 @@ package LSC.Internal.Pad32
 is
    pragma Pure;
 
+   pragma Pure;
+
    -- Terminate a Word32 array
    --
    -- The array @Block@ is terminated by setting the bit at (@Length@ + 1) to 1

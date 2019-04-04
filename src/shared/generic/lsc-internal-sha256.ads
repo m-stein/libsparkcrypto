@@ -53,6 +53,8 @@ package LSC.Internal.SHA256 is
 
    pragma Pure;
 
+   pragma Pure;
+
    -- SHA-256 context
    type Context_Type is private;
 
